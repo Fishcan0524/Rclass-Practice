@@ -5,26 +5,37 @@ date: "2023-09-22"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## Import the data set
+```{r}
+rairuoho <- read.table(
+  'https://www.dipintothereef.com/uploads/3/7/3/5/37359245/rairuoho.txt',
+  header=T, sep="\t", dec=".", na.strings = "n/a")
+head(rairuoho)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+## Load some package
+```{r}
+library(dplyr) 
+library(tidyr)
 ```
 
-## Including Plots
+## Modify the table and generate new data set
+```{r}
+rairuoho2 <- rairuoho %>% 
+  #Replace nutrient with enriched
+  mutate(treatment = 
+         ifelse(treatment == "nutrient",
+                "enriched",treatment)) %>%
+  #Reformat the table
+  pivot_longer(cols=c(1:6), 
+               names_to = "day", 
+               values_to = "length") %>%
+  #Merge variables Spatial1 and Spatial2
+  unite("spatial", 
+        c(spatial1,spatial2), 
+        sep = "_") %>%
+  #Remove variables row and column
+  dplyr::select(-c(row,column))
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+rairuoho2
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
