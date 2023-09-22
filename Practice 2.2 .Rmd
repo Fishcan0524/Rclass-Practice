@@ -13,7 +13,7 @@ rairuoho <- read.table(
 head(rairuoho)
 ```
 
-## Load some package
+## Load some packages
 ```{r}
 library(dplyr) 
 library(tidyr)
