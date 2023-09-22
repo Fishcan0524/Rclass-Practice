@@ -5,6 +5,8 @@ date: "2023-09-22"
 output: html_document
 ---
 
+VD: Good, well done. This is just a comment to learn to accept outside 'push' / edit. Try to merge this comment in GitHub, pull in RStudio, delete it, commit and push back.  
+
 ## Import the data set
 ```{r}
 rairuoho <- read.table(
