@@ -1,0 +1,41 @@
+---
+title: "Practice 3.2"
+author: "Fishcan"
+date: "2023-09-28"
+output: html_document
+---
+
+## Creat the data frame
+```{r}
+diet <- data.frame(row.names = c("subject_1","subject_2","subject_3","subject_4","subject_5"),
+                   before_diet = c(104,95,87,77,102),
+                   after_diet = c(96,91,81,75,118))
+diet
+str(diet)
+typeof(diet[,1])
+```
+
+## Creat the BUBBLE_DIET list
+```{r}
+BUBBLE_DIET <- list(
+  
+  bubble_tea = data.frame(
+    subject = rep(row.names(diet),2),
+    weight = c(diet[,1],diet[,2]),
+    time = as.factor(c(rep("before_diet",5),rep("after_diet",5)))),
+  
+  WEIGHT_LOSS = list(
+    subjects = row.names(diet),
+    weight_loss = (diet[,2]-diet[,1])/diet[,1],
+    table = data.frame(subject = row.names(diet), 
+                       weight_loss = (diet[,2]-diet[,1])/diet[,1])),
+  
+  message = "It's great!.")
+
+BUBBLE_DIET
+```
+
+## Check the elements of BUBBLE_DIET
+```{r}
+str(BUBBLE_DIET)
+```
