@@ -15,7 +15,7 @@ str(diet)
 typeof(diet[,1])
 ```
 
-## Creat the BUBBLE_DIET list
+## Create the BUBBLE_DIET list
 ```{r}
 BUBBLE_DIET <- list(
   
@@ -30,7 +30,7 @@ BUBBLE_DIET <- list(
     table = data.frame(subject = row.names(diet), 
                        weight_loss = (diet[,2]-diet[,1])/diet[,1])),
   
-  message = "It's great!.")
+  message = "It's great!.") # sweet, all good!
 
 BUBBLE_DIET
 ```
